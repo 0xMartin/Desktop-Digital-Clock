@@ -8,18 +8,53 @@ class EventManager: ObservableObject {
     @Published var holidays: [Date] = []
     
     private let eventStore = EKEventStore()
-
+    private var observedDates: [Date] = []
+    
     init() {
         requestAccess()
+        setupNotificationObserver()
     }
-
+    
+    deinit {
+        // Důležité: Odstranit observer při zničení objektu
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     private func requestAccess() {
         eventStore.requestFullAccessToEvents { granted, error in
             if granted && error == nil {
                 print("Calendar access allowed.")
+                Task { @MainActor in
+                    await self.fetchEvents(for: self.observedDates)
+                }
             } else {
                 print("Calendar access denied.")
             }
+        }
+    }
+    
+    private func setupNotificationObserver() {
+        // Registrace pro notifikace o změnách v kalendáři
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(calendarChanged),
+            name: .EKEventStoreChanged,
+            object: nil
+        )
+    }
+    
+    @objc private func calendarChanged() {
+        // Když se změní kalendář, aktualizujeme události
+        Task { @MainActor in
+            await fetchEvents(for: observedDates)
+        }
+    }
+    
+    // Nastaví, které datumy sledovat
+    func setObservedDates(_ dates: [Date]) {
+        observedDates = dates
+        Task { @MainActor in
+            await fetchEvents(for: dates)
         }
     }
     
@@ -80,7 +115,6 @@ class EventManager: ObservableObject {
 }
 
 struct ContentView: View {
-    // Vytvoříme si instanci našeho manažera jako @StateObject
     @StateObject private var eventManager = EventManager()
     
     var body: some View {
@@ -108,10 +142,14 @@ struct ContentView: View {
                 Spacer()
             }
             .onAppear {
-                // Pokaždé, když se view objeví, spustíme načtení dat
-                Task {
-                    await eventManager.fetchEvents(for: dates)
-                }
+                // Nastavíme datumy, které chceme sledovat
+                eventManager.setObservedDates(dates)
+            }
+            .onChange(of: context.date) { newDate in
+                // Když se změní aktuální datum (např. po půlnoci)
+                // aktualizujeme seznam sledovaných dní
+                let newDates = datesForCalendar(currentDate: newDate)
+                eventManager.setObservedDates(newDates)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -140,7 +178,6 @@ struct ContentView: View {
 struct CalendarDayCircle: View {
     let date: Date
     let currentDate: Date
-    // @ObservedObject zajistí, že se kolečko překreslí, když se změní data v manageru
     @ObservedObject var eventManager: EventManager
     
     private var isToday: Bool { Calendar.current.isDate(date, inSameDayAs: currentDate) }
