@@ -10,7 +10,6 @@ class EventManager: ObservableObject {
     private let eventStore = EKEventStore()
 
     init() {
-        // Hned při startu požádáme o povolení
         requestAccess()
     }
 
@@ -80,7 +79,6 @@ class EventManager: ObservableObject {
     }
 }
 
-// MARK: - Hlavní View aplikace
 struct ContentView: View {
     // Vytvoříme si instanci našeho manažera jako @StateObject
     @StateObject private var eventManager = EventManager()
@@ -177,7 +175,6 @@ struct CalendarDayCircle: View {
     }
 }
 
-// Modifikátor pro text zůstává stejný
 struct GlassTextEffect: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
