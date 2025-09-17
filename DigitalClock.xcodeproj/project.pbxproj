@@ -29,20 +29,23 @@
 		5B40A6462E7AAEF20039B46F /* DigitalClockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DigitalClockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5B5FA82E2E7AE1C100188D9F /* Exceptions for "DigitalClock" folder in "DigitalClock" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 5B40A6282E7AAEF10039B46F /* DigitalClock */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5B40A62B2E7AAEF10039B46F /* DigitalClock */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5B5FA82E2E7AE1C100188D9F /* Exceptions for "DigitalClock" folder in "DigitalClock" target */,
+			);
 			path = DigitalClock;
-			sourceTree = "<group>";
-		};
-		5B40A63F2E7AAEF20039B46F /* DigitalClockTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = DigitalClockTests;
-			sourceTree = "<group>";
-		};
-		5B40A6492E7AAEF20039B46F /* DigitalClockUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = DigitalClockUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -76,8 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				5B40A62B2E7AAEF10039B46F /* DigitalClock */,
-				5B40A63F2E7AAEF20039B46F /* DigitalClockTests */,
-				5B40A6492E7AAEF20039B46F /* DigitalClockUITests */,
 				5B40A62A2E7AAEF10039B46F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,9 +131,6 @@
 			dependencies = (
 				5B40A63E2E7AAEF20039B46F /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				5B40A63F2E7AAEF20039B46F /* DigitalClockTests */,
-			);
 			name = DigitalClockTests;
 			packageProductDependencies = (
 			);
@@ -152,9 +150,6 @@
 			);
 			dependencies = (
 				5B40A6482E7AAEF20039B46F /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				5B40A6492E7AAEF20039B46F /* DigitalClockUITests */,
 			);
 			name = DigitalClockUITests;
 			packageProductDependencies = (
@@ -396,13 +391,29 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = YES;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DigitalClock/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "This app needs access to your calendar to display symbols for days with scheduled events.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = M4R71N.DigitalClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -421,13 +432,29 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = YES;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DigitalClock/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "This app needs access to your calendar to display symbols for days with scheduled events.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = M4R71N.DigitalClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
