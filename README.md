@@ -31,8 +31,8 @@ If you have Xcode installed, you can build the app yourself.
 
 1.  **Clone the repository:**
     ```sh
-    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-    cd your-repo-name
+    git clone https://github.com/0xMartin/Desktop-Digital-Clock.git
+    cd Desktop-Digital-Clock
     ```
 2.  **Open the project** in Xcode by double-clicking the `.xcodeproj` file.
 3.  **Select your Mac** as the run destination.
