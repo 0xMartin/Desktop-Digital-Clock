@@ -1,7 +1,7 @@
 # Desktop Clock for macOS ✨
 
-[![macOS](https://img.shields.io/badge/macOS-13.0%2B-blue)](https://www.apple.com/macos)
-[![Swift](https://img.shields.io/badge/Swift-5.9%2B-orange)](https://swift.org)
+[![macOS](https://img.shields.io/badge/macOS-26.0%2B-blue)](https://www.apple.com/macos)
+[![Swift](https://img.shields.io/badge/Swift-6.2%2B-orange)](https://swift.org)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 A sleek, modern desktop clock and calendar for macOS. It displays the time, date, and an 8-day calendar strip directly on your wallpaper, appearing as a native part of the system.
