@@ -42,7 +42,7 @@ If you have Xcode installed, you can build the app yourself.
 
 If you're downloading a pre-built `.app` file (e.g., from the "Releases" page), macOS Gatekeeper will block it because it's from an "unidentified developer." You need to manually sign it to allow it to run.
 
-1.  **Download and Unzip**: Download the `DigitalClock.app.zip` file and unzip it. You will see the `DigitalClock.app` file. Move it to your Desktop for now.
+1.  **Download and Unzip**: Download the `DigitalClock.zip` file and unzip it. You will see the `DigitalClock.app` file. Move it to your Desktop for now.
 
 2.  **Open the Terminal**: You can find it in `Applications/Utilities/Terminal.app`.
 
