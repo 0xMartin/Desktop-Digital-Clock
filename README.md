@@ -15,11 +15,9 @@ A sleek, modern desktop clock and calendar for macOS. It displays the time, date
 * **Minimalist Design**: Clean and unobtrusive interface that blends with your desktop.
 * **Time & Date**: Large, clear display of the current time and formatted date.
 * **8-Day Calendar Strip**: A row of 8 days (2 past, today, 5 future) for a quick overview.
-* **Frosted Glass Effect**: The day circles use a beautiful system-native "frosted glass" effect.
 * **Event Indicators**: See indicators for weekends, holidays, and your own scheduled events fetched directly from the system's Calendar app.
 * **Launch at Startup**: Automatically starts when you log in to your Mac.
 * **No Dock Icon**: Runs as a background agent for a seamless experience.
-* **Interactive Calendar**: Click on any day circle to open the macOS Calendar app directly to that date.
 
 ---
 ## Installation
