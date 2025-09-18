@@ -49,21 +49,13 @@ If you're downloading a pre-built `.app` file (e.g., from the "Releases" page), 
 
     * **First, remove the quarantine attribute:** This tells macOS that you trust the app.
         ```sh
-        xattr -cr 
+        xattr -cr DigitalClock.app
         ```
-        (Drag & drop `DigitalClock.app` here)
-
-        Your final command will look like this: `xattr -cr /Users/yourname/Desktop/DigitalClock.app`
-        Press **Enter**.
 
     * **Second, ad-hoc sign the application:** This provides a basic local signature that satisfies macOS security.
         ```sh
-        codesign --force --deep --sign - 
+        codesign --force --deep --sign - DigitalClock.app
         ```
-        (Again, drag & drop `DigitalClock.app` here)
-        
-        Your final command will look like this: `codesign --force --deep --sign - /Users/yourname/Desktop/DigitalClock.app`
-        Press **Enter**.
 
 4.  **Move to Applications**: You can now move the `DigitalClock.app` from your Desktop to your `/Applications` folder.
 
