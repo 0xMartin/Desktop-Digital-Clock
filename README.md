@@ -1,4 +1,4 @@
-# Desktop Clock for macOS ✨
+# Desktop Digital Clock for macOS ✨
 
 [![Version](https://img.shields.io/github/v/release/0xMartin/Desktop-Digital-Clock?label=version)](https://github.com/0xMartin/Desktop-Digital-Clock/releases)
 [![macOS](https://img.shields.io/badge/macOS-26.0%2B-blue)](https://www.apple.com/macos)

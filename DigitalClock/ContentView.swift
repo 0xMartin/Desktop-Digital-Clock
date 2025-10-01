@@ -111,11 +111,20 @@ class EventManager: ObservableObject {
             case .holiday: return "gift.fill"
             }
         }
+        
+        @MainActor func color(settings: ClockSettings) -> Color {
+            switch self {
+            case .weekend: return settings.weekendColor
+            case .plannedEvent: return settings.eventColor
+            case .holiday: return settings.holidayColor
+            }
+        }
     }
 }
 
 struct ContentView: View {
     @StateObject private var eventManager = EventManager()
+    @StateObject private var colorSettings = ClockSettings.shared
     
     var body: some View {
         TimelineView(.everyMinute) { context in
@@ -127,18 +136,18 @@ struct ContentView: View {
                     Text(formattedDate(from: context.date))
                         .font(.system(size: 36, weight: .semibold))
                 }
-                .modifier(GlassTextEffect())
-                .padding(.top, 150)
-                
+                .modifier(GlassTextEffect(textColor: colorSettings.textColor))
+                .padding(.top, colorSettings.topPadding)
+                            
                 Spacer().frame(height: 30)
-                
+                            
                 HStack(spacing: 12) {
                     ForEach(dates, id: \.self) { date in
-                        CalendarDayCircle(date: date, currentDate: context.date, eventManager: eventManager)
+                        CalendarDayCircle(date: date, currentDate: context.date, eventManager: eventManager, colorSettings: colorSettings)
                     }
                 }
                 .padding(.horizontal, 20)
-                
+                            
                 Spacer()
             }
             .onAppear {
@@ -172,52 +181,5 @@ struct ContentView: View {
             }
         }
         return dates
-    }
-}
-
-struct CalendarDayCircle: View {
-    let date: Date
-    let currentDate: Date
-    @ObservedObject var eventManager: EventManager
-    
-    private var isToday: Bool { Calendar.current.isDate(date, inSameDayAs: currentDate) }
-    private var dayNumber: String { String(Calendar.current.component(.day, from: date)) }
-    private var eventType: EventManager.EventType? { eventManager.eventType(for: date) }
-    
-    var body: some View {
-        ZStack {
-            VStack(spacing: 0) {
-                Spacer().frame(height: 4)
-                
-                Text(dayNumber)
-                    .font(.system(size: 24, weight: isToday ? .bold : .medium))
-                
-                if let eventType = eventType {
-                    Image(systemName: eventType.symbolName)
-                        .font(.system(size: 8))
-                        .padding(.top, 2)
-                }
-                
-                Spacer()
-            }
-        }
-        .foregroundColor(.white)
-        .frame(width: 55, height: 55)
-        .glassEffect(.regular)
-        .overlay(
-            Circle()
-                .stroke(isToday ? .white : .white.opacity(0.3), lineWidth: isToday ? 2 : 1)
-        )
-        .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 2)
-    }
-}
-
-struct GlassTextEffect: ViewModifier {
-    func body(content: Content) -> some View {
-        ZStack {
-            content.offset(y: 1.5).blur(radius: 1).foregroundColor(.black.opacity(0.35))
-            content.offset(y: -1.5).blur(radius: 1.5).foregroundColor(.white.opacity(0.4))
-            content.foregroundColor(.white.opacity(0.85))
-        }
     }
 }
