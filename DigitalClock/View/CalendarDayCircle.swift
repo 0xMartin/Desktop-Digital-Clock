@@ -4,7 +4,7 @@ struct CalendarDayCircle: View {
     let date: Date
     let currentDate: Date
     @ObservedObject var eventManager: EventManager
-    @ObservedObject var colorSettings: ClockSettings
+    @ObservedObject var clockSettings: ClockSettings
 
     private var isToday: Bool { Calendar.current.isDate(date, inSameDayAs: currentDate) }
     private var dayNumber: String { String(Calendar.current.component(.day, from: date)) }
@@ -22,18 +22,18 @@ struct CalendarDayCircle: View {
                     Image(systemName: eventType.symbolName)
                         .font(.system(size: 8))
                         .padding(.top, 2)
-                        .foregroundColor(eventType.color(settings: colorSettings))
+                        .foregroundColor(eventType.color(settings: clockSettings))
                 }
                 
                 Spacer()
             }
         }
-        .foregroundColor(colorSettings.textColor.opacity(0.85))
+        .foregroundColor(clockSettings.textColor.opacity(0.85))
         .frame(width: 55, height: 55)
         .glassEffect(.regular)
         .overlay(
             Circle()
-                .stroke(isToday ? colorSettings.textColor : colorSettings.textColor.opacity(0.3), lineWidth: isToday ? 2 : 1)
+                .stroke(isToday ? clockSettings.textColor : clockSettings.textColor.opacity(0.3), lineWidth: isToday ? 2 : 1)
         )
         .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 2)
     }

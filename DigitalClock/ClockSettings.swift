@@ -21,10 +21,9 @@ extension Color {
     }
 }
 
-// Správce barev, který bude sdílený v celé aplikaci
 @MainActor
 class ClockSettings: ObservableObject {
-    static let shared = ClockSettings() // Singleton pro snadný přístup
+    static let shared = ClockSettings()
 
     // Klíče pro UserDefaults
     private let textColorKey = "textColor"
@@ -32,6 +31,7 @@ class ClockSettings: ObservableObject {
     private let eventColorKey = "eventColor"
     private let holidayColorKey = "holidayColor"
     private let topPaddingKey = "topPadding"
+    private let apiKeyKey = "apiKey"
 
     // Publikované proměnné, na které bude UI reagovat
     @Published var textColor: Color {
@@ -49,34 +49,37 @@ class ClockSettings: ObservableObject {
     @Published var topPadding: Double {
         didSet { UserDefaults.standard.set(topPadding, forKey: topPaddingKey) }
     }
+    @Published var apiKey: String {
+        didSet { UserDefaults.standard.set(apiKey, forKey: apiKeyKey) }
+    }
 
     private init() {
-        // Načtení uložených barev, nebo použití výchozích
+        // Načtení uložených hodnot, nebo použití výchozích
         self.textColor = Self.loadColor(forKey: "textColor") ?? .white.opacity(0.85)
         self.weekendColor = Self.loadColor(forKey: "weekendColor") ?? .cyan
         self.eventColor = Self.loadColor(forKey: "eventColor") ?? .yellow
         self.holidayColor = Self.loadColor(forKey: "holidayColor") ?? .red
         self.topPadding = UserDefaults.standard.object(forKey: topPaddingKey) as? Double ?? 220.0
+        self.apiKey = UserDefaults.standard.string(forKey: apiKeyKey) ?? ""
     }
     
-    // Uloží barvu
+    // ... metody saveColor a loadColor zůstávají stejné ...
     private func saveColor(_ color: Color, forKey key: String) {
         if let data = color.toData() {
             UserDefaults.standard.set(data, forKey: key)
         }
     }
 
-    // Načte barvu
     private static func loadColor(forKey key: String) -> Color? {
         guard let data = UserDefaults.standard.data(forKey: key) else { return nil }
         return Color.fromData(data)
     }
     
-    // Funkce pro reset na výchozí hodnoty
     func resetToDefaults() {
         textColor = .white.opacity(0.85)
         weekendColor = .cyan
         eventColor = .yellow
         holidayColor = .red
+        apiKey = ""
     }
 }
