@@ -60,7 +60,7 @@ struct AdditionalInfoView: View {
             )
         }
         .padding(15)
-        .background(.ultraThinMaterial, in: panelShape)
+        .glassEffect(.regular, in: panelShape)
         .overlay(
             panelShape
                 .stroke(clockSettings.textColor.opacity(0.3), lineWidth: 1)
